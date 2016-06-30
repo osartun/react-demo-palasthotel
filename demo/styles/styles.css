@@ -1,0 +1,97 @@
+.hidden {
+  display: none;
+}
+
+html, body,
+#container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  font-family: sans-serif;
+}
+
+.todo-app > ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-app > ul > li {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.todo-app > ul > li > div {
+  margin: 10px;
+}
+
+.todo-app > ul > li > .new-todo-list {
+  width: 100px;
+  height: 150px;
+  position: relative;
+  background: white;
+  box-shadow: 0 2px 5px darkgray;
+}
+
+.todo-app > ul > li > .new-todo-list:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE4cHgiIHdpZHRoPSIxOHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0iIzAwMDAwMCI+CiA8cGF0aCBkPSJtMzggMjZoLTEydjEyaC00di0xMmgtMTJ2LTRoMTJ2LTEyaDR2MTJoMTJ2NHoiLz4KIDxwYXRoIGQ9Im0wIDBoNDh2NDhoLTQ4eiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K) no-repeat center;
+  background-size: 50%;
+  opacity: 0.25;
+  cursor: pointer;
+}
+
+.todo-list {
+  display: inline-block;
+  background: white;
+  padding: 12px 0;
+  box-shadow: 0 2px 5px darkgray;
+  margin: 10px;
+}
+
+.todo-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-list .todo-item {
+  padding: 5px 15px;
+  border: 1px solid transparent;
+  border-right: none;
+  border-left: none;
+}
+
+.todo-list .todo-item.is-new form:before {
+  content: ".";
+  display: inline-block;
+  color: transparent;
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+  background: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE4cHgiIHdpZHRoPSIxOHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0iIzAwMDAwMCI+CiA8cGF0aCBkPSJtMzggMjZoLTEydjEyaC00di0xMmgtMTJ2LTRoMTJ2LTEyaDR2MTJoMTJ2NHoiLz4KIDxwYXRoIGQ9Im0wIDBoNDh2NDhoLTQ4eiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K) no-repeat center;
+}
+
+.todo-list .todo-item.done input[type=text] {
+  text-decoration: line-through;
+  color: darkgray;
+  font-style: italic;
+}
+
+.todo-list .todo-item.focused {
+  border-color: darkgray;
+}
+
+.todo-list input[type=text] {
+  font-size: 14px;
+  line-height: 20px;
+  border: none;
+  margin-left: 2px;
+}
+
+.todo-list input[type=text]:focus {
+  outline: none;
+}
