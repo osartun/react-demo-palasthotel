@@ -21471,8 +21471,19 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        null,
-	        "Hello World"
+	        { className: "todo-list" },
+	        _react2.default.createElement(
+	          "ul",
+	          null,
+	          _react2.default.createElement(
+	            "li",
+	            null,
+	            _react2.default.createElement("input", {
+	              type: "text",
+	              placeholder: "New List Item"
+	            })
+	          )
+	        )
 	      );
 	    }
 	  }]);
