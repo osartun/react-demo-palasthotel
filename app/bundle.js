@@ -21534,11 +21534,7 @@
 	          "ul",
 	          null,
 	          this.state.todos.map(function (todo) {
-	            return _react2.default.createElement(_TodoListItem2.default, {
-	              id: todo.id,
-	              checked: todo.checked,
-	              text: todo.text
-	            });
+	            return _react2.default.createElement(_TodoListItem2.default, todo);
 	          })
 	        )
 	      );

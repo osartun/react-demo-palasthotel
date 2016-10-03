@@ -60,9 +60,7 @@ export default class TodoList extends React.Component {
           {this.state.todos.map((todo) => {
             return (
               <TodoListItem
-                id={todo.id}
-                checked={todo.checked}
-                text={todo.text}
+                {...todo}
               />
             );
           })}
