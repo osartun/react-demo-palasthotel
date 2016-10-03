@@ -23169,9 +23169,10 @@
 
 	      var props = _objectWithoutProperties(_props, ["id", "text", "checked"]);
 
+	      var className = !text ? "is-new" : checked ? "done" : "";
 	      return _react2.default.createElement(
 	        "li",
-	        null,
+	        { className: "todo-item " + className },
 	        _react2.default.createElement(
 	          "form",
 	          { onSubmit: this.delegateOnSubmit.bind(this) },
