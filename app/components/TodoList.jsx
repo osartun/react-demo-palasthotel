@@ -9,6 +9,12 @@ export default class TodoList extends React.Component {
     };
   }
 
+  handleType(e) {
+    this.setState({
+      text: e.target.value,
+    });
+  }
+
   render() {
     return (
       <div className="todo-list">
@@ -18,6 +24,7 @@ export default class TodoList extends React.Component {
               type="text"
               value={this.state.text}
               placeholder="New List Item"
+              onChange={this.handleType.bind(this)}
             />
           </li>
         </ul>

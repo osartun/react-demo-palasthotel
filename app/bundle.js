@@ -21472,6 +21472,13 @@
 	  }
 
 	  _createClass(TodoList, [{
+	    key: "handleType",
+	    value: function handleType(e) {
+	      this.setState({
+	        text: e.target.value
+	      });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -21486,7 +21493,8 @@
 	            _react2.default.createElement("input", {
 	              type: "text",
 	              value: this.state.text,
-	              placeholder: "New List Item"
+	              placeholder: "New List Item",
+	              onChange: this.handleType.bind(this)
 	            })
 	          )
 	        )
