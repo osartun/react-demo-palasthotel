@@ -21490,12 +21490,26 @@
 	      return newTodo;
 	    }
 	  }, {
+	    key: "ensureEmptyTodo",
+	    value: function ensureEmptyTodo() {
+	      var last = _underscore2.default.last(this.state.todos);
+	      if (last.text !== "") {
+	        // There's no empty todo at the end anymore
+	        return this.createTodo();
+	      }
+	    }
+	  }, {
 	    key: "handleType",
 	    value: function handleType(id, e) {
 	      var todos = this.state.todos;
 	      var todo = _underscore2.default.findWhere(todos, { id: id });
 	      todo.text = e.target.value;
 	      this.setState({ todos: todos });
+	    }
+	  }, {
+	    key: "handleSubmit",
+	    value: function handleSubmit() {
+	      this.ensureEmptyTodo();
 	    }
 	  }, {
 	    key: "render",
@@ -21512,12 +21526,16 @@
 	            return _react2.default.createElement(
 	              "li",
 	              { key: todo.id },
-	              _react2.default.createElement("input", {
-	                type: "text",
-	                value: todo.text,
-	                placeholder: "New List Item",
-	                onChange: _this2.handleType.bind(_this2, todo.id)
-	              })
+	              _react2.default.createElement(
+	                "form",
+	                { onSubmit: _this2.handleSubmit.bind(_this2) },
+	                _react2.default.createElement("input", {
+	                  type: "text",
+	                  value: todo.text,
+	                  placeholder: "New List Item",
+	                  onChange: _this2.handleType.bind(_this2, todo.id)
+	                })
+	              )
 	            );
 	          })
 	        )

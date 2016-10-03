@@ -25,11 +25,23 @@ export default class TodoList extends React.Component {
     return newTodo;
   }
 
+  ensureEmptyTodo() {
+    const last = _.last(this.state.todos);
+    if (last.text !== "") {
+      // There's no empty todo at the end anymore
+      return this.createTodo();
+    }
+  }
+
   handleType(id, e) {
     const todos = this.state.todos;
     const todo = _.findWhere(todos, { id });
     todo.text = e.target.value;
     this.setState({ todos });
+  }
+
+  handleSubmit() {
+    this.ensureEmptyTodo();
   }
 
   render() {
@@ -39,12 +51,14 @@ export default class TodoList extends React.Component {
           {this.state.todos.map((todo) => {
             return (
               <li key={todo.id}>
-                <input
-                  type="text"
-                  value={todo.text}
-                  placeholder="New List Item"
-                  onChange={this.handleType.bind(this, todo.id)}
-                />
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                  <input
+                    type="text"
+                    value={todo.text}
+                    placeholder="New List Item"
+                    onChange={this.handleType.bind(this, todo.id)}
+                  />
+                </form>
               </li>
             );
           })}
