@@ -21521,38 +21521,39 @@
 	      this.setState({ todos: todos });
 	    }
 	  }, {
+	    key: "renderTodo",
+	    value: function renderTodo(todo) {
+	      return _react2.default.createElement(
+	        "li",
+	        { key: todo.id },
+	        _react2.default.createElement(
+	          "form",
+	          { onSubmit: this.handleSubmit.bind(this) },
+	          _react2.default.createElement("input", {
+	            className: todo.text ? "show" : "hidden",
+	            type: "checkbox",
+	            checked: todo.checked,
+	            onChange: this.handleCheck.bind(this, todo.id)
+	          }),
+	          _react2.default.createElement("input", {
+	            type: "text",
+	            value: todo.text,
+	            placeholder: "New List Item",
+	            onChange: this.handleType.bind(this, todo.id)
+	          })
+	        )
+	      );
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
-	      var _this2 = this;
-
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "todo-list" },
 	        _react2.default.createElement(
 	          "ul",
 	          null,
-	          this.state.todos.map(function (todo) {
-	            return _react2.default.createElement(
-	              "li",
-	              { key: todo.id },
-	              _react2.default.createElement(
-	                "form",
-	                { onSubmit: _this2.handleSubmit.bind(_this2) },
-	                _react2.default.createElement("input", {
-	                  className: todo.text ? "show" : "hidden",
-	                  type: "checkbox",
-	                  checked: todo.checked,
-	                  onChange: _this2.handleCheck.bind(_this2, todo.id)
-	                }),
-	                _react2.default.createElement("input", {
-	                  type: "text",
-	                  value: todo.text,
-	                  placeholder: "New List Item",
-	                  onChange: _this2.handleType.bind(_this2, todo.id)
-	                })
-	              )
-	            );
-	          })
+	          this.state.todos.map(this.renderTodo.bind(this))
 	        )
 	      );
 	    }
