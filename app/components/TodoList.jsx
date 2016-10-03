@@ -59,6 +59,7 @@ export default class TodoList extends React.Component {
           {this.state.todos.map((todo) => {
             return (
               <TodoListItem
+                key={todo.id}
                 {...todo}
                 onType={this.handleType.bind(this, todo.id)}
                 onCheck={this.handleCheck.bind(this, todo.id)}

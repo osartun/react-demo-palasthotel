@@ -14,7 +14,7 @@ export default class TodoListItem extends Component {
   render() {
     const { id, text, checked, ...props } = this.props;
     return (
-      <li key={id}>
+      <li>
         <form onSubmit={this.delegateOnSubmit.bind(this)}>
           <input
             className={text ? "show" : "hidden"}

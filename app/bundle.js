@@ -21537,7 +21537,9 @@
 	          "ul",
 	          null,
 	          this.state.todos.map(function (todo) {
-	            return _react2.default.createElement(_TodoListItem2.default, _extends({}, todo, {
+	            return _react2.default.createElement(_TodoListItem2.default, _extends({
+	              key: todo.id
+	            }, todo, {
 	              onType: _this2.handleType.bind(_this2, todo.id),
 	              onCheck: _this2.handleCheck.bind(_this2, todo.id),
 	              onSubmit: _this2.handleSubmit.bind(_this2)
@@ -23169,7 +23171,7 @@
 
 	      return _react2.default.createElement(
 	        "li",
-	        { key: id },
+	        null,
 	        _react2.default.createElement(
 	          "form",
 	          { onSubmit: this.delegateOnSubmit.bind(this) },
