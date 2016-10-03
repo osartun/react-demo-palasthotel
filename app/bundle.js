@@ -21460,10 +21460,15 @@
 	var TodoList = function (_React$Component) {
 	  _inherits(TodoList, _React$Component);
 
-	  function TodoList() {
+	  function TodoList(props) {
 	    _classCallCheck(this, TodoList);
 
-	    return _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
+
+	    _this.state = {
+	      text: "Hello World"
+	    };
+	    return _this;
 	  }
 
 	  _createClass(TodoList, [{
@@ -21480,6 +21485,7 @@
 	            null,
 	            _react2.default.createElement("input", {
 	              type: "text",
+	              value: this.state.text,
 	              placeholder: "New List Item"
 	            })
 	          )
