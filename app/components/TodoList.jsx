@@ -7,6 +7,7 @@ export default class TodoList extends React.Component {
     super(props);
     this.state = {
       todos: [],
+      inFocus: -1,
     };
   }
 
@@ -42,11 +43,14 @@ export default class TodoList extends React.Component {
     const todos = this.state.todos;
     const todo = _.findWhere(todos, { id });
     todo.text = text;
-    this.setState({ todos });
+    this.setState({ todos, inFocus: id });
   }
 
   handleSubmit(e) {
-    this.ensureEmptyTodo();
+    const newTodo = this.ensureEmptyTodo();
+    if (newTodo) {
+      this.setState({ inFocus: newTodo.id });
+    }
   }
 
   handleCheck(id, e) {
@@ -65,6 +69,7 @@ export default class TodoList extends React.Component {
               <TodoListItem
                 key={todo.id}
                 {...todo}
+                focused={this.state.inFocus === todo.id}
                 onType={this.handleType.bind(this, todo.id)}
                 onCheck={this.handleCheck.bind(this, todo.id)}
                 onSubmit={this.handleSubmit.bind(this)}

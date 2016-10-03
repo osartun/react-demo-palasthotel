@@ -2,6 +2,12 @@ import React, { Component, PropTypes } from "react";
 import _ from "underscore";
 
 export default class TodoListItem extends Component {
+  componentDidMount() {
+    if (this.props.focused) {
+      this.inputEl.focus();
+    }
+  }
+
   delegateOnSubmit(e) {
     e.preventDefault();
     this.props.onSubmit(e);
@@ -15,7 +21,7 @@ export default class TodoListItem extends Component {
     const { id, text, checked, ...props } = this.props;
     const className = !text ? "is-new" : checked ? "done" : "";
     return (
-      <li className={`todo-item ${className}`}>
+      <li className={`todo-item ${className} ${props.focused ? "focused" : ""}`}>
         <form onSubmit={this.delegateOnSubmit.bind(this)}>
           <input
             className={text ? "show" : "hidden"}
@@ -28,6 +34,7 @@ export default class TodoListItem extends Component {
             value={text}
             placeholder="New List Item"
             onChange={this.delegateOnChange.bind(this)}
+            ref={(el) => this.inputEl = el}
           />
         </form>
       </li>
@@ -39,6 +46,7 @@ TodoListItem.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   text: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
+  focused: PropTypes.bool,
   onCheck: PropTypes.func,
   onType: PropTypes.func,
   onSubmit: PropTypes.func,

@@ -21472,7 +21472,8 @@
 	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
 	    _this.state = {
-	      todos: []
+	      todos: [],
+	      inFocus: -1
 	    };
 	    return _this;
 	  }
@@ -21515,12 +21516,15 @@
 	      var todos = this.state.todos;
 	      var todo = _underscore2.default.findWhere(todos, { id: id });
 	      todo.text = text;
-	      this.setState({ todos: todos });
+	      this.setState({ todos: todos, inFocus: id });
 	    }
 	  }, {
 	    key: "handleSubmit",
 	    value: function handleSubmit(e) {
-	      this.ensureEmptyTodo();
+	      var newTodo = this.ensureEmptyTodo();
+	      if (newTodo) {
+	        this.setState({ inFocus: newTodo.id });
+	      }
 	    }
 	  }, {
 	    key: "handleCheck",
@@ -21545,6 +21549,7 @@
 	            return _react2.default.createElement(_TodoListItem2.default, _extends({
 	              key: todo.id
 	            }, todo, {
+	              focused: _this2.state.inFocus === todo.id,
 	              onType: _this2.handleType.bind(_this2, todo.id),
 	              onCheck: _this2.handleCheck.bind(_this2, todo.id),
 	              onSubmit: _this2.handleSubmit.bind(_this2)
@@ -23154,6 +23159,13 @@
 	  }
 
 	  _createClass(TodoListItem, [{
+	    key: "componentDidMount",
+	    value: function componentDidMount() {
+	      if (this.props.focused) {
+	        this.inputEl.focus();
+	      }
+	    }
+	  }, {
 	    key: "delegateOnSubmit",
 	    value: function delegateOnSubmit(e) {
 	      e.preventDefault();
@@ -23167,6 +23179,8 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      var _props = this.props;
 	      var id = _props.id;
 	      var text = _props.text;
@@ -23177,7 +23191,7 @@
 	      var className = !text ? "is-new" : checked ? "done" : "";
 	      return _react2.default.createElement(
 	        "li",
-	        { className: "todo-item " + className },
+	        { className: "todo-item " + className + " " + (props.focused ? "focused" : "") },
 	        _react2.default.createElement(
 	          "form",
 	          { onSubmit: this.delegateOnSubmit.bind(this) },
@@ -23191,7 +23205,10 @@
 	            type: "text",
 	            value: text,
 	            placeholder: "New List Item",
-	            onChange: this.delegateOnChange.bind(this)
+	            onChange: this.delegateOnChange.bind(this),
+	            ref: function ref(el) {
+	              return _this2.inputEl = el;
+	            }
 	          })
 	        )
 	      );
@@ -23208,6 +23225,7 @@
 	  id: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]).isRequired,
 	  text: _react.PropTypes.string.isRequired,
 	  checked: _react.PropTypes.bool.isRequired,
+	  focused: _react.PropTypes.bool,
 	  onCheck: _react.PropTypes.func,
 	  onType: _react.PropTypes.func,
 	  onSubmit: _react.PropTypes.func
