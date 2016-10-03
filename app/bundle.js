@@ -23203,5 +23203,15 @@
 
 	exports.default = TodoListItem;
 
+
+	TodoListItem.propTypes = {
+	  id: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]).isRequired,
+	  text: _react.PropTypes.string.isRequired,
+	  checked: _react.PropTypes.bool.isRequired,
+	  onCheck: _react.PropTypes.func,
+	  onType: _react.PropTypes.func,
+	  onSubmit: _react.PropTypes.func
+	};
+
 /***/ }
 /******/ ]);

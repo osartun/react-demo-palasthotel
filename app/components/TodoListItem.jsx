@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import _ from "underscore";
 
 export default class TodoListItem extends Component {
@@ -34,3 +34,12 @@ export default class TodoListItem extends Component {
     );
   }
 }
+
+TodoListItem.propTypes = {
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  text: PropTypes.string.isRequired,
+  checked: PropTypes.bool.isRequired,
+  onCheck: PropTypes.func,
+  onType: PropTypes.func,
+  onSubmit: PropTypes.func,
+};
