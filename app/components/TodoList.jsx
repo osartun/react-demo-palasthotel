@@ -45,6 +45,13 @@ export default class TodoList extends React.Component {
     this.ensureEmptyTodo();
   }
 
+  handleCheck(id, e) {
+    const todos = this.state.todos;
+    const todo = _.findWhere(todos, { id });
+    todo.checked = e.target.checked;
+    this.setState({ todos });
+  }
+
   render() {
     return (
       <div className="todo-list">
@@ -53,6 +60,12 @@ export default class TodoList extends React.Component {
             return (
               <li key={todo.id}>
                 <form onSubmit={this.handleSubmit.bind(this)}>
+                  <input
+                    className={todo.text ? "show" : "hidden"}
+                    type="checkbox"
+                    checked={todo.checked}
+                    onChange={this.handleCheck.bind(this, todo.id)}
+                  />
                   <input
                     type="text"
                     value={todo.text}

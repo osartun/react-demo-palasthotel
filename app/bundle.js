@@ -21513,6 +21513,14 @@
 	      this.ensureEmptyTodo();
 	    }
 	  }, {
+	    key: "handleCheck",
+	    value: function handleCheck(id, e) {
+	      var todos = this.state.todos;
+	      var todo = _underscore2.default.findWhere(todos, { id: id });
+	      todo.checked = e.target.checked;
+	      this.setState({ todos: todos });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _this2 = this;
@@ -21530,6 +21538,12 @@
 	              _react2.default.createElement(
 	                "form",
 	                { onSubmit: _this2.handleSubmit.bind(_this2) },
+	                _react2.default.createElement("input", {
+	                  className: todo.text ? "show" : "hidden",
+	                  type: "checkbox",
+	                  checked: todo.checked,
+	                  onChange: _this2.handleCheck.bind(_this2, todo.id)
+	                }),
 	                _react2.default.createElement("input", {
 	                  type: "text",
 	                  value: todo.text,
