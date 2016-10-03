@@ -7,6 +7,9 @@ export default class TodoList extends React.Component {
     this.state = {
       todos: [],
     };
+  }
+
+  componentWillMount() {
     this.createTodo();
   }
 

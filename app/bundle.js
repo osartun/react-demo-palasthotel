@@ -21468,11 +21468,15 @@
 	    _this.state = {
 	      todos: []
 	    };
-	    _this.createTodo();
 	    return _this;
 	  }
 
 	  _createClass(TodoList, [{
+	    key: "componentWillMount",
+	    value: function componentWillMount() {
+	      this.createTodo();
+	    }
+	  }, {
 	    key: "createTodo",
 	    value: function createTodo() {
 	      var newTodo = {
