@@ -21539,6 +21539,7 @@
 	    value: function handleFocusChange(id, focused) {
 	      var inFocus = focused ? id : -1;
 	      this.setState({ inFocus: inFocus });
+	      this.ensureEmptyTodo();
 	    }
 	  }, {
 	    key: "render",

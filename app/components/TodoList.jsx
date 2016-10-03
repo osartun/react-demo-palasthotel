@@ -63,6 +63,7 @@ export default class TodoList extends React.Component {
   handleFocusChange(id, focused) {
     const inFocus = focused ? id : -1;
     this.setState({ inFocus });
+    this.ensureEmptyTodo();
   }
 
   render() {
