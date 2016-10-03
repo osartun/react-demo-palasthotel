@@ -23127,6 +23127,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -23151,23 +23153,30 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _props = this.props;
+	      var id = _props.id;
+	      var text = _props.text;
+	      var checked = _props.checked;
+
+	      var props = _objectWithoutProperties(_props, ["id", "text", "checked"]);
+
 	      return _react2.default.createElement(
 	        "li",
-	        { key: this.props.id },
+	        { key: id },
 	        _react2.default.createElement(
 	          "form",
 	          { onSubmit: this.delegateOnSubmit.bind(this) },
 	          _react2.default.createElement("input", {
-	            className: this.props.text ? "show" : "hidden",
+	            className: text ? "show" : "hidden",
 	            type: "checkbox",
-	            checked: this.props.checked,
-	            onChange: this.handleCheck.bind(this, this.props.id)
+	            checked: checked,
+	            onChange: this.handleCheck.bind(this, id)
 	          }),
 	          _react2.default.createElement("input", {
 	            type: "text",
-	            value: this.props.text,
+	            value: text,
 	            placeholder: "New List Item",
-	            onChange: this.handleType.bind(this, this.props.id)
+	            onChange: this.handleType.bind(this, id)
 	          })
 	        )
 	      );

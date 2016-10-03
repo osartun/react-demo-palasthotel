@@ -8,20 +8,21 @@ export default class TodoListItem extends Component {
   }
 
   render() {
+    const { id, text, checked, ...props } = this.props;
     return (
-      <li key={this.props.id}>
+      <li key={id}>
         <form onSubmit={this.delegateOnSubmit.bind(this)}>
           <input
-            className={this.props.text ? "show" : "hidden"}
+            className={text ? "show" : "hidden"}
             type="checkbox"
-            checked={this.props.checked}
-            onChange={this.handleCheck.bind(this, this.props.id)}
+            checked={checked}
+            onChange={this.handleCheck.bind(this, id)}
           />
           <input
             type="text"
-            value={this.props.text}
+            value={text}
             placeholder="New List Item"
-            onChange={this.handleType.bind(this, this.props.id)}
+            onChange={this.handleType.bind(this, id)}
           />
         </form>
       </li>
