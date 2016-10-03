@@ -23185,7 +23185,7 @@
 	            type: "text",
 	            value: text,
 	            placeholder: "New List Item",
-	            onChange: this.delegateOnChange.bind(this, id)
+	            onChange: this.delegateOnChange.bind(this)
 	          })
 	        )
 	      );

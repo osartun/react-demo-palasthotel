@@ -26,7 +26,7 @@ export default class TodoListItem extends Component {
             type="text"
             value={text}
             placeholder="New List Item"
-            onChange={this.delegateOnChange.bind(this, id)}
+            onChange={this.delegateOnChange.bind(this)}
           />
         </form>
       </li>
