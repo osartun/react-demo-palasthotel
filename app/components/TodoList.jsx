@@ -34,10 +34,10 @@ export default class TodoList extends React.Component {
     }
   }
 
-  handleType(id, e) {
+  handleType(id, text) {
     const todos = this.state.todos;
     const todo = _.findWhere(todos, { id });
-    todo.text = e.target.value;
+    todo.text = text;
     this.setState({ todos });
   }
 
@@ -48,7 +48,7 @@ export default class TodoList extends React.Component {
   handleCheck(id, e) {
     const todos = this.state.todos;
     const todo = _.findWhere(todos, { id });
-    todo.checked = e.target.checked;
+    todo.checked = !todo.checked;
     this.setState({ todos });
   }
 
@@ -60,6 +60,8 @@ export default class TodoList extends React.Component {
             return (
               <TodoListItem
                 {...todo}
+                onType={this.handleType.bind(this, todo.id)}
+                onCheck={this.handleCheck.bind(this, todo.id)}
                 onSubmit={this.handleSubmit.bind(this)}
               />
             );

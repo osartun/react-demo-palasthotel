@@ -7,6 +7,10 @@ export default class TodoListItem extends Component {
     this.props.onSubmit(e);
   }
 
+  delegateOnChange(e) {
+    this.props.onType(e.target.value);
+  }
+
   render() {
     const { id, text, checked, ...props } = this.props;
     return (
@@ -16,13 +20,13 @@ export default class TodoListItem extends Component {
             className={text ? "show" : "hidden"}
             type="checkbox"
             checked={checked}
-            onChange={this.handleCheck.bind(this, id)}
+            onChange={props.onCheck}
           />
           <input
             type="text"
             value={text}
             placeholder="New List Item"
-            onChange={this.handleType.bind(this, id)}
+            onChange={this.delegateOnChange.bind(this, id)}
           />
         </form>
       </li>

@@ -21506,10 +21506,10 @@
 	    }
 	  }, {
 	    key: "handleType",
-	    value: function handleType(id, e) {
+	    value: function handleType(id, text) {
 	      var todos = this.state.todos;
 	      var todo = _underscore2.default.findWhere(todos, { id: id });
-	      todo.text = e.target.value;
+	      todo.text = text;
 	      this.setState({ todos: todos });
 	    }
 	  }, {
@@ -21522,7 +21522,7 @@
 	    value: function handleCheck(id, e) {
 	      var todos = this.state.todos;
 	      var todo = _underscore2.default.findWhere(todos, { id: id });
-	      todo.checked = e.target.checked;
+	      todo.checked = !todo.checked;
 	      this.setState({ todos: todos });
 	    }
 	  }, {
@@ -21538,6 +21538,8 @@
 	          null,
 	          this.state.todos.map(function (todo) {
 	            return _react2.default.createElement(_TodoListItem2.default, _extends({}, todo, {
+	              onType: _this2.handleType.bind(_this2, todo.id),
+	              onCheck: _this2.handleCheck.bind(_this2, todo.id),
 	              onSubmit: _this2.handleSubmit.bind(_this2)
 	            }));
 	          })
@@ -23151,6 +23153,11 @@
 	      this.props.onSubmit(e);
 	    }
 	  }, {
+	    key: "delegateOnChange",
+	    value: function delegateOnChange(e) {
+	      this.props.onType(e.target.value);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _props = this.props;
@@ -23170,13 +23177,13 @@
 	            className: text ? "show" : "hidden",
 	            type: "checkbox",
 	            checked: checked,
-	            onChange: this.handleCheck.bind(this, id)
+	            onChange: props.onCheck
 	          }),
 	          _react2.default.createElement("input", {
 	            type: "text",
 	            value: text,
 	            placeholder: "New List Item",
-	            onChange: this.handleType.bind(this, id)
+	            onChange: this.delegateOnChange.bind(this, id)
 	          })
 	        )
 	      );
