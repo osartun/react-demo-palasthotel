@@ -21508,7 +21508,8 @@
 	    }
 	  }, {
 	    key: "handleSubmit",
-	    value: function handleSubmit() {
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
 	      this.ensureEmptyTodo();
 	    }
 	  }, {

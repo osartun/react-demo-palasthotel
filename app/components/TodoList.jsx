@@ -40,7 +40,8 @@ export default class TodoList extends React.Component {
     this.setState({ todos });
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.ensureEmptyTodo();
   }
 
