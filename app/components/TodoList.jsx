@@ -1,5 +1,6 @@
 import React from "react";
 import _ from "underscore";
+import TodoListItem from "./TodoListItem.jsx";
 
 export default class TodoList extends React.Component {
   constructor(props) {
@@ -52,32 +53,19 @@ export default class TodoList extends React.Component {
     this.setState({ todos });
   }
 
-  renderTodo(todo) {
-    return (
-      <li key={todo.id}>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input
-            className={todo.text ? "show" : "hidden"}
-            type="checkbox"
-            checked={todo.checked}
-            onChange={this.handleCheck.bind(this, todo.id)}
-          />
-          <input
-            type="text"
-            value={todo.text}
-            placeholder="New List Item"
-            onChange={this.handleType.bind(this, todo.id)}
-          />
-        </form>
-      </li>
-    );
-  }
-
   render() {
     return (
       <div className="todo-list">
         <ul>
-          {this.state.todos.map(this.renderTodo.bind(this))}
+          {this.state.todos.map((todo) => {
+            return (
+              <TodoListItem
+                id={todo.id}
+                checked={todo.checked}
+                text={todo.text}
+              />
+            );
+          })}
         </ul>
       </div>
     );
