@@ -21505,6 +21505,11 @@
 	      }
 	    }
 	  }, {
+	    key: "getTodos",
+	    value: function getTodos() {
+	      return _underscore2.default.sortBy(this.state.todos, "checked");
+	    }
+	  }, {
 	    key: "handleType",
 	    value: function handleType(id, text) {
 	      var todos = this.state.todos;
@@ -21536,7 +21541,7 @@
 	        _react2.default.createElement(
 	          "ul",
 	          null,
-	          this.state.todos.map(function (todo) {
+	          this.getTodos().map(function (todo) {
 	            return _react2.default.createElement(_TodoListItem2.default, _extends({
 	              key: todo.id
 	            }, todo, {

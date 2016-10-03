@@ -34,6 +34,10 @@ export default class TodoList extends React.Component {
     }
   }
 
+  getTodos() {
+    return _.sortBy(this.state.todos, "checked");
+  }
+
   handleType(id, text) {
     const todos = this.state.todos;
     const todo = _.findWhere(todos, { id });
@@ -56,7 +60,7 @@ export default class TodoList extends React.Component {
     return (
       <div className="todo-list">
         <ul>
-          {this.state.todos.map((todo) => {
+          {this.getTodos().map((todo) => {
             return (
               <TodoListItem
                 key={todo.id}
