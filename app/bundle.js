@@ -21535,6 +21535,12 @@
 	      this.setState({ todos: todos });
 	    }
 	  }, {
+	    key: "handleFocusChange",
+	    value: function handleFocusChange(id, focused) {
+	      var inFocus = focused ? id : -1;
+	      this.setState({ inFocus: inFocus });
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      var _this2 = this;
@@ -21552,7 +21558,8 @@
 	              focused: _this2.state.inFocus === todo.id,
 	              onType: _this2.handleType.bind(_this2, todo.id),
 	              onCheck: _this2.handleCheck.bind(_this2, todo.id),
-	              onSubmit: _this2.handleSubmit.bind(_this2)
+	              onSubmit: _this2.handleSubmit.bind(_this2),
+	              onFocusChange: _this2.handleFocusChange.bind(_this2, todo.id)
 	            }));
 	          })
 	        )
@@ -23206,6 +23213,8 @@
 	            value: text,
 	            placeholder: "New List Item",
 	            onChange: this.delegateOnChange.bind(this),
+	            onFocus: props.onFocusChange.bind(this, true),
+	            onBlur: props.onFocusChange.bind(this, false),
 	            ref: function ref(el) {
 	              return _this2.inputEl = el;
 	            }
@@ -23228,7 +23237,8 @@
 	  focused: _react.PropTypes.bool,
 	  onCheck: _react.PropTypes.func,
 	  onType: _react.PropTypes.func,
-	  onSubmit: _react.PropTypes.func
+	  onSubmit: _react.PropTypes.func,
+	  onFocusChange: _react.PropTypes.func
 	};
 
 /***/ }

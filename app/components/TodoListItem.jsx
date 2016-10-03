@@ -34,6 +34,8 @@ export default class TodoListItem extends Component {
             value={text}
             placeholder="New List Item"
             onChange={this.delegateOnChange.bind(this)}
+            onFocus={props.onFocusChange.bind(this, true)}
+            onBlur={props.onFocusChange.bind(this, false)}
             ref={(el) => this.inputEl = el}
           />
         </form>
@@ -50,4 +52,5 @@ TodoListItem.propTypes = {
   onCheck: PropTypes.func,
   onType: PropTypes.func,
   onSubmit: PropTypes.func,
+  onFocusChange: PropTypes.func,
 };

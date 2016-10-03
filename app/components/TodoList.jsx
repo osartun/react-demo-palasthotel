@@ -60,6 +60,11 @@ export default class TodoList extends React.Component {
     this.setState({ todos });
   }
 
+  handleFocusChange(id, focused) {
+    const inFocus = focused ? id : -1;
+    this.setState({ inFocus });
+  }
+
   render() {
     return (
       <div className="todo-list">
@@ -73,6 +78,7 @@ export default class TodoList extends React.Component {
                 onType={this.handleType.bind(this, todo.id)}
                 onCheck={this.handleCheck.bind(this, todo.id)}
                 onSubmit={this.handleSubmit.bind(this)}
+                onFocusChange={this.handleFocusChange.bind(this, todo.id)}
               />
             );
           })}
