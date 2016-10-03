@@ -21511,7 +21511,7 @@
 	          this.state.todos.map(function (todo) {
 	            return _react2.default.createElement(
 	              "li",
-	              null,
+	              { key: todo.id },
 	              _react2.default.createElement("input", {
 	                type: "text",
 	                value: todo.text,

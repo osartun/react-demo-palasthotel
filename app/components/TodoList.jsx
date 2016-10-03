@@ -38,7 +38,7 @@ export default class TodoList extends React.Component {
         <ul>
           {this.state.todos.map((todo) => {
             return (
-              <li>
+              <li key={todo.id}>
                 <input
                   type="text"
                   value={todo.text}
