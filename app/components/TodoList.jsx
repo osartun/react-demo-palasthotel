@@ -5,28 +5,46 @@ export default class TodoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: "Hello World",
+      todos: [],
     };
+    this.createTodo();
   }
 
-  handleType(e) {
-    this.setState({
-      text: e.target.value,
-    });
+  createTodo() {
+    const newTodo = {
+      id: _.uniqueId("todo"),
+      text: "",
+      checked: false,
+    };
+    const todos = this.state.todos;
+    todos.push(newTodo);
+    this.setState({ todos });
+    return newTodo;
+  }
+
+  handleType(id, e) {
+    const todos = this.state.todos;
+    const todo = _.findWhere(todos, { id });
+    todo.text = e.target.value;
+    this.setState({ todos });
   }
 
   render() {
     return (
       <div className="todo-list">
         <ul>
-          <li>
-            <input
-              type="text"
-              value={this.state.text}
-              placeholder="New List Item"
-              onChange={this.handleType.bind(this)}
-            />
-          </li>
+          {this.state.todos.map((todo) => {
+            return (
+              <li>
+                <input
+                  type="text"
+                  value={todo.text}
+                  placeholder="New List Item"
+                  onChange={this.handleType.bind(this, todo.id)}
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

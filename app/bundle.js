@@ -21466,37 +21466,56 @@
 	    var _this = _possibleConstructorReturn(this, (TodoList.__proto__ || Object.getPrototypeOf(TodoList)).call(this, props));
 
 	    _this.state = {
-	      text: "Hello World"
+	      todos: []
 	    };
+	    _this.createTodo();
 	    return _this;
 	  }
 
 	  _createClass(TodoList, [{
+	    key: "createTodo",
+	    value: function createTodo() {
+	      var newTodo = {
+	        id: _underscore2.default.uniqueId("todo"),
+	        text: "",
+	        checked: false
+	      };
+	      var todos = this.state.todos;
+	      todos.push(newTodo);
+	      this.setState({ todos: todos });
+	      return newTodo;
+	    }
+	  }, {
 	    key: "handleType",
-	    value: function handleType(e) {
-	      this.setState({
-	        text: e.target.value
-	      });
+	    value: function handleType(id, e) {
+	      var todos = this.state.todos;
+	      var todo = _underscore2.default.findWhere(todos, { id: id });
+	      todo.text = e.target.value;
+	      this.setState({ todos: todos });
 	    }
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "todo-list" },
 	        _react2.default.createElement(
 	          "ul",
 	          null,
-	          _react2.default.createElement(
-	            "li",
-	            null,
-	            _react2.default.createElement("input", {
-	              type: "text",
-	              value: this.state.text,
-	              placeholder: "New List Item",
-	              onChange: this.handleType.bind(this)
-	            })
-	          )
+	          this.state.todos.map(function (todo) {
+	            return _react2.default.createElement(
+	              "li",
+	              null,
+	              _react2.default.createElement("input", {
+	                type: "text",
+	                value: todo.text,
+	                placeholder: "New List Item",
+	                onChange: _this2.handleType.bind(_this2, todo.id)
+	              })
+	            );
+	          })
 	        )
 	      );
 	    }
