@@ -42,7 +42,6 @@ export default class TodoList extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
     this.ensureEmptyTodo();
   }
 
@@ -61,6 +60,7 @@ export default class TodoList extends React.Component {
             return (
               <TodoListItem
                 {...todo}
+                onSubmit={this.handleSubmit.bind(this)}
               />
             );
           })}

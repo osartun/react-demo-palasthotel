@@ -21439,6 +21439,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -21513,7 +21515,6 @@
 	  }, {
 	    key: "handleSubmit",
 	    value: function handleSubmit(e) {
-	      e.preventDefault();
 	      this.ensureEmptyTodo();
 	    }
 	  }, {
@@ -21527,6 +21528,8 @@
 	  }, {
 	    key: "render",
 	    value: function render() {
+	      var _this2 = this;
+
 	      return _react2.default.createElement(
 	        "div",
 	        { className: "todo-list" },
@@ -21534,7 +21537,9 @@
 	          "ul",
 	          null,
 	          this.state.todos.map(function (todo) {
-	            return _react2.default.createElement(_TodoListItem2.default, todo);
+	            return _react2.default.createElement(_TodoListItem2.default, _extends({}, todo, {
+	              onSubmit: _this2.handleSubmit.bind(_this2)
+	            }));
 	          })
 	        )
 	      );
@@ -23138,6 +23143,12 @@
 	  }
 
 	  _createClass(TodoListItem, [{
+	    key: "delegateOnSubmit",
+	    value: function delegateOnSubmit(e) {
+	      e.preventDefault();
+	      this.props.onSubmit(e);
+	    }
+	  }, {
 	    key: "render",
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -23145,7 +23156,7 @@
 	        { key: this.props.id },
 	        _react2.default.createElement(
 	          "form",
-	          { onSubmit: this.handleSubmit.bind(this) },
+	          { onSubmit: this.delegateOnSubmit.bind(this) },
 	          _react2.default.createElement("input", {
 	            className: this.props.text ? "show" : "hidden",
 	            type: "checkbox",

@@ -2,10 +2,15 @@ import React, { Component } from "react";
 import _ from "underscore";
 
 export default class TodoListItem extends Component {
+  delegateOnSubmit(e) {
+    e.preventDefault();
+    this.props.onSubmit(e);
+  }
+
   render() {
     return (
       <li key={this.props.id}>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form onSubmit={this.delegateOnSubmit.bind(this)}>
           <input
             className={this.props.text ? "show" : "hidden"}
             type="checkbox"
